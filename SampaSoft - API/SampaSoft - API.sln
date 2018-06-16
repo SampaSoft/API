@@ -5,6 +5,18 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampaSoft.Infraestrutura", "SampaSoft.Infraestrutura\SampaSoft.Infraestrutura.csproj", "{9257F440-ECFC-4C70-8420-A8885E95192D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. ORM", "4. ORM", "{2DCD7582-1193-498D-9123-AB23FEB9CA73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Dados", "3. Dados", "{DCD03D3D-CDA0-4D7D-8CDD-70B8897AA95B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Negócios", "2. Negócios", "{FFF4611A-BFB5-4971-AF61-05866ED57DCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. API", "1. API", "{B178B731-B729-4611-A1C8-B5D2BA60584E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Popular Dados", "5. Popular Dados", "{4175C6C6-F835-4013-B4B0-54DAF3FCA67F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampaSoft.PopulaDados", "SampaSoft.PopulaDados\SampaSoft.PopulaDados.csproj", "{D42D7264-FBCF-4865-8527-42033E7B2A91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +27,17 @@ Global
 		{9257F440-ECFC-4C70-8420-A8885E95192D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9257F440-ECFC-4C70-8420-A8885E95192D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9257F440-ECFC-4C70-8420-A8885E95192D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D42D7264-FBCF-4865-8527-42033E7B2A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D42D7264-FBCF-4865-8527-42033E7B2A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D42D7264-FBCF-4865-8527-42033E7B2A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D42D7264-FBCF-4865-8527-42033E7B2A91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9257F440-ECFC-4C70-8420-A8885E95192D} = {2DCD7582-1193-498D-9123-AB23FEB9CA73}
+		{D42D7264-FBCF-4865-8527-42033E7B2A91} = {4175C6C6-F835-4013-B4B0-54DAF3FCA67F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E468E0D1-441B-46C0-AC55-E07DDA99F0FE}

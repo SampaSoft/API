@@ -30,5 +30,8 @@ namespace SampaSoft.Infraestrutura.EDMX
         public virtual DbSet<Usuario> tbUsuarios { get; set; }
         public virtual DbSet<Secretaria> tbSecretarias { get; set; }
         public virtual DbSet<ProdutoServico> tbProdutosServicos { get; set; }
+        public virtual DbSet<OCEncerrada> OCEncerradas { get; set; }
+        public virtual DbSet<OC> OC { get; set; }
+        public virtual DbSet<OCItem> OCItens { get; set; }
     }
 }

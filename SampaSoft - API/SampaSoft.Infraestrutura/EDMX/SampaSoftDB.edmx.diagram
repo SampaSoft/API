@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" ZoomLevel="71" >
+      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" ZoomLevel="80" >
         <EntityTypeShape EntityType="SampasoftDBModel.Fornecedor" Width="1.5" PointX="6.5" PointY="4.25" />
         <EntityTypeShape EntityType="SampasoftDBModel.Municipio" Width="1.5" PointX="6.5" PointY="1.25" />
         <EntityTypeShape EntityType="SampasoftDBModel.Usuario" Width="1.5" PointX="8.75" PointY="1.25" />
@@ -14,6 +14,10 @@
         <AssociationConnector Association="SampasoftDBModel.FK_tbUsuarios_tbMunicipios" />
         <EntityTypeShape EntityType="SampasoftDBModel.ProdutoServico" Width="1.5" PointX="8.75" PointY="5.75" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbProdutosServicos_tbFornecedores" />
+        <EntityTypeShape EntityType="SampasoftDBModel.OCEncerrada" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SampasoftDBModel.OC" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="SampasoftDBModel.OCItem" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="SampasoftDBModel.FK_OCItens_OCItens" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

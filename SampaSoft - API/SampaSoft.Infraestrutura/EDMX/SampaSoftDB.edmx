@@ -5,6 +5,43 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SampasoftDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OC">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="UF" Type="nvarchar" MaxLength="50" />
+          <Property Name="DT_INICIO" Type="datetime" />
+          <Property Name="DT_FIM" Type="datetime" />
+          <Property Name="QTD_ITENS" Type="int" />
+          <Property Name="UNIDADE_COMPRADORA" Type="nvarchar" MaxLength="250" />
+          <Property Name="MODALIDADE" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OCEncerradas">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="UNIDADE_COMPRADORA" Type="nvarchar(max)" />
+          <Property Name="PROCEDIMENTO" Type="nvarchar(max)" />
+          <Property Name="SITUACAO" Type="nvarchar(max)" />
+          <Property Name="DT_ENCERRAMENTO" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OCItens">
+          <Key>
+            <PropertyRef Name="OC" />
+            <PropertyRef Name="NR_SEQUENCIA_ITEM" />
+          </Key>
+          <Property Name="OC" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NR_SEQUENCIA_ITEM" Type="int" Nullable="false" />
+          <Property Name="CD_ITEM" Type="int" />
+          <Property Name="CD_CLASSE_ITEM" Type="int" />
+          <Property Name="DESCRICAO_CLASSE" Type="nvarchar(max)" />
+          <Property Name="DESCRICAO_ITEM" Type="nvarchar(max)" />
+          <Property Name="UNIDADE_FORNECIMENTO" Type="nvarchar(max)" />
+          <Property Name="QUANTIDADE" Type="int" />
+        </EntityType>
         <EntityType Name="tbFornecedores">
           <Key>
             <PropertyRef Name="codFornecedor" />
@@ -83,6 +120,18 @@
           <Property Name="dataCadastro" Type="datetime" />
           <Property Name="ativo" Type="bit" />
         </EntityType>
+        <Association Name="FK_OCItens_OCItens">
+          <End Role="OC" Type="Self.OC" Multiplicity="1" />
+          <End Role="OCItens" Type="Self.OCItens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OC">
+              <PropertyRef Name="OC" />
+            </Principal>
+            <Dependent Role="OCItens">
+              <PropertyRef Name="OC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbFornecedores_tbMunicipios">
           <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="1" />
           <End Role="tbFornecedores" Type="Self.tbFornecedores" Multiplicity="*" />
@@ -132,11 +181,18 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SampasoftDBModelStoreContainer">
+          <EntitySet Name="OC" EntityType="Self.OC" Schema="bec" store:Type="Tables" />
+          <EntitySet Name="OCEncerradas" EntityType="Self.OCEncerradas" Schema="bec" store:Type="Tables" />
+          <EntitySet Name="OCItens" EntityType="Self.OCItens" Schema="bec" store:Type="Tables" />
           <EntitySet Name="tbFornecedores" EntityType="Self.tbFornecedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbProdutosServicos" EntityType="Self.tbProdutosServicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbSecretarias" EntityType="Self.tbSecretarias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OCItens_OCItens" Association="Self.FK_OCItens_OCItens">
+            <End Role="OC" EntitySet="OC" />
+            <End Role="OCItens" EntitySet="OCItens" />
+          </AssociationSet>
           <AssociationSet Name="FK_tbFornecedores_tbMunicipios" Association="Self.FK_tbFornecedores_tbMunicipios">
             <End Role="tbMunicipios" EntitySet="tbMunicipios" />
             <End Role="tbFornecedores" EntitySet="tbFornecedores" />
@@ -179,6 +235,13 @@
           <AssociationSet Name="FK_tbProdutosServicos_tbFornecedores" Association="SampasoftDBModel.FK_tbProdutosServicos_tbFornecedores">
             <End Role="Fornecedor" EntitySet="tbFornecedores" />
             <End Role="tbProdutosServicos" EntitySet="tbProdutosServicos" />
+          </AssociationSet>
+          <EntitySet Name="OCEncerradas" EntityType="SampasoftDBModel.OCEncerrada" />
+          <EntitySet Name="OC" EntityType="SampasoftDBModel.OC" />
+          <EntitySet Name="OCItens" EntityType="SampasoftDBModel.OCItem" />
+          <AssociationSet Name="FK_OCItens_OCItens" Association="SampasoftDBModel.FK_OCItens_OCItens">
+            <End Role="OC" EntitySet="OC" />
+            <End Role="OCItens" EntitySet="OCItens" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Fornecedor">
@@ -237,7 +300,6 @@
         <EntityType Name="Secretaria">
           <Key>
             <PropertyRef Name="codSecretaria" />
-            <PropertyRef Name="ativo" />
           </Key>
           <Property Name="codSecretaria" Type="Int32" Nullable="false" />
           <Property Name="cnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -309,6 +371,56 @@
             </Principal>
             <Dependent Role="tbProdutosServicos">
               <PropertyRef Name="codFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OCEncerrada">
+          <Key>
+            <PropertyRef Name="OC" />
+          </Key>
+          <Property Name="OC" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="UNIDADE_COMPRADORA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PROCEDIMENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SITUACAO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DT_ENCERRAMENTO" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OC">
+          <Key>
+            <PropertyRef Name="OC1" />
+          </Key>
+          <Property Name="OC1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MUNICIPIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DT_INICIO" Type="DateTime" Precision="3" />
+          <Property Name="DT_FIM" Type="DateTime" Precision="3" />
+          <Property Name="QTD_ITENS" Type="Int32" />
+          <Property Name="UNIDADE_COMPRADORA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MODALIDADE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OCItens" Relationship="SampasoftDBModel.FK_OCItens_OCItens" FromRole="OC" ToRole="OCItens" />
+        </EntityType>
+        <EntityType Name="OCItem">
+          <Key>
+            <PropertyRef Name="OC" />
+            <PropertyRef Name="NR_SEQUENCIA_ITEM" />
+          </Key>
+          <Property Name="OC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NR_SEQUENCIA_ITEM" Type="Int32" Nullable="false" />
+          <Property Name="CD_ITEM" Type="Int32" />
+          <Property Name="CD_CLASSE_ITEM" Type="Int32" />
+          <Property Name="DESCRICAO_CLASSE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRICAO_ITEM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UNIDADE_FORNECIMENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QUANTIDADE" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_OCItens_OCItens">
+          <End Type="SampasoftDBModel.OC" Role="OC" Multiplicity="1" />
+          <End Type="SampasoftDBModel.OCItem" Role="OCItens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OC">
+              <PropertyRef Name="OC1" />
+            </Principal>
+            <Dependent Role="OCItens">
+              <PropertyRef Name="OC" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -398,6 +510,45 @@
                 <ScalarProperty Name="nome" ColumnName="nome" />
                 <ScalarProperty Name="codFornecedor" ColumnName="codFornecedor" />
                 <ScalarProperty Name="codProdutoServico" ColumnName="codProdutoServico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OCEncerradas">
+            <EntityTypeMapping TypeName="SampasoftDBModel.OCEncerrada">
+              <MappingFragment StoreEntitySet="OCEncerradas">
+                <ScalarProperty Name="DT_ENCERRAMENTO" ColumnName="DT_ENCERRAMENTO" />
+                <ScalarProperty Name="SITUACAO" ColumnName="SITUACAO" />
+                <ScalarProperty Name="PROCEDIMENTO" ColumnName="PROCEDIMENTO" />
+                <ScalarProperty Name="UNIDADE_COMPRADORA" ColumnName="UNIDADE_COMPRADORA" />
+                <ScalarProperty Name="OC" ColumnName="OC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OC">
+            <EntityTypeMapping TypeName="SampasoftDBModel.OC">
+              <MappingFragment StoreEntitySet="OC">
+                <ScalarProperty Name="MODALIDADE" ColumnName="MODALIDADE" />
+                <ScalarProperty Name="UNIDADE_COMPRADORA" ColumnName="UNIDADE_COMPRADORA" />
+                <ScalarProperty Name="QTD_ITENS" ColumnName="QTD_ITENS" />
+                <ScalarProperty Name="DT_FIM" ColumnName="DT_FIM" />
+                <ScalarProperty Name="DT_INICIO" ColumnName="DT_INICIO" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="MUNICIPIO" ColumnName="MUNICIPIO" />
+                <ScalarProperty Name="OC1" ColumnName="OC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OCItens">
+            <EntityTypeMapping TypeName="SampasoftDBModel.OCItem">
+              <MappingFragment StoreEntitySet="OCItens">
+                <ScalarProperty Name="QUANTIDADE" ColumnName="QUANTIDADE" />
+                <ScalarProperty Name="UNIDADE_FORNECIMENTO" ColumnName="UNIDADE_FORNECIMENTO" />
+                <ScalarProperty Name="DESCRICAO_ITEM" ColumnName="DESCRICAO_ITEM" />
+                <ScalarProperty Name="DESCRICAO_CLASSE" ColumnName="DESCRICAO_CLASSE" />
+                <ScalarProperty Name="CD_CLASSE_ITEM" ColumnName="CD_CLASSE_ITEM" />
+                <ScalarProperty Name="CD_ITEM" ColumnName="CD_ITEM" />
+                <ScalarProperty Name="NR_SEQUENCIA_ITEM" ColumnName="NR_SEQUENCIA_ITEM" />
+                <ScalarProperty Name="OC" ColumnName="OC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -49,16 +49,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EDMX\Fornecedor.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\Municipio.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\OC.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\OCEncerrada.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\OCItem.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\ProdutoServico.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\SampaSoftDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampaSoftDB.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="EDMX\SampaSoftDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\SampaSoftDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampaSoftDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\Secretaria.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\Usuario.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -79,13 +107,23 @@
     <Content Include="EDMX\SampaSoftDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SampaSoftDB.Context.cs</LastGenOutput>
+      <DependentUpon>SampaSoftDB.edmx</DependentUpon>
     </Content>
+    <Content Include="EDMX\SampaSoftDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SampaSoftDB.edmx</DependentUpon>
+      <LastGenOutput>SampaSoftDB.cs</LastGenOutput>
+    </Content>
+    <Content Include="SQL\SQL1.0.0.5.sql" />
+    <Content Include="SQL\SQL1.0.0.4.sql" />
+    <Content Include="SQL\SQL1.0.0.3.sql" />
+    <Content Include="SQL\SQL1.0.0.2.sql" />
+    <Content Include="SQL\SQL1.0.0.1.sql" />
+    <Content Include="SQL\SQL1.0.0.0.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SQL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
