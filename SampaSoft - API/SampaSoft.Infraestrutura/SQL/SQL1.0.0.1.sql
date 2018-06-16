@@ -1,7 +1,7 @@
-﻿[SampasoftDB]
+﻿USE [SampasoftDB]
 GO
 
-/****** Object:  Table [dbo].[tbUsuarios]    Script Date: 16/06/2018 11:37:40 ******/
+/****** Object:  Table [dbo].[tbUsuarios]    Script Date: 16/06/2018 12:10:39 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[tbUsuarios](
 	[numero] [nvarchar](50) NULL,
 	[complemento] [nvarchar](250) NULL,
 	[bairro] [nvarchar](50) NULL,
-	[cidade] [nvarchar](50) NULL,
+	[codMunicipio] [int] NOT NULL,
 	[estado] [char](2) NULL,
 	[cep] [nvarchar](50) NULL,
 	[sexo] [char](1) NULL,
@@ -37,3 +37,10 @@ ALTER TABLE [dbo].[tbUsuarios] ADD  CONSTRAINT [DF_tbUsuarios_dataCadastro]  DEF
 GO
 
 ALTER TABLE [dbo].[tbUsuarios] ADD  CONSTRAINT [DF_tbUsuarios_ativo]  DEFAULT ((1)) FOR [ativo]
+GO
+
+ALTER TABLE [dbo].[tbUsuarios]  WITH CHECK ADD  CONSTRAINT [FK_tbUsuarios_tbMunicipios] FOREIGN KEY([codMunicipio])
+REFERENCES [dbo].[tbMunicipios] ([codMunicipio])
+GO
+
+ALTER TABLE [dbo].[tbUsuarios] CHECK CONSTRAINT [FK_tbUsuarios_tbMunicipios]
