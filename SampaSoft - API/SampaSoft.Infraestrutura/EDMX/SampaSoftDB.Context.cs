@@ -25,5 +25,10 @@ namespace SampaSoft.Infraestrutura.EDMX
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Fornecedor> tbFornecedores { get; set; }
+        public virtual DbSet<Municipio> tbMunicipios { get; set; }
+        public virtual DbSet<Usuario> tbUsuarios { get; set; }
+        public virtual DbSet<Secretaria> tbSecretarias { get; set; }
+        public virtual DbSet<ProdutoServico> tbProdutosServicos { get; set; }
     }
 }

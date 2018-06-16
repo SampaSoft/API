@@ -1,7 +1,7 @@
 ﻿USE [SampasoftDB]
 GO
 
-/****** Object:  Table [dbo].[tbSecretarias]    Script Date: 16/06/2018 12:26:38 ******/
+/****** Object:  Table [dbo].[tbSecretarias]    Script Date: 16/06/2018 13:29:43 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[tbSecretarias](
-	[codSecretaria] [int] NOT NULL,
+	[codSecretaria] [int] IDENTITY(1,1) NOT NULL,
 	[cnpj] [nvarchar](50) NULL,
 	[nome] [nvarchar](250) NULL,
 	[email] [nvarchar](50) NULL,
@@ -20,7 +20,11 @@ CREATE TABLE [dbo].[tbSecretarias](
 	[telefone] [nvarchar](50) NULL,
 	[horaAtendimentoInicial] [time](7) NULL,
 	[horaAtendimentoFinal] [time](7) NULL,
-	[ativo] [bit] NOT NULL
+	[ativo] [bit] NOT NULL,
+ CONSTRAINT [PK_tbSecretarias] PRIMARY KEY CLUSTERED 
+(
+	[codSecretaria] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
 GO

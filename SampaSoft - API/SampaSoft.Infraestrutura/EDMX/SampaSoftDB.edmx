@@ -4,20 +4,404 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SampasoftDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="SampasoftDBModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="SampasoftDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbFornecedores">
+          <Key>
+            <PropertyRef Name="codFornecedor" />
+          </Key>
+          <Property Name="codFornecedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpfcnpj" Type="nvarchar" MaxLength="50" />
+          <Property Name="razaoSocial" Type="nvarchar" MaxLength="50" />
+          <Property Name="nomeFantasia" Type="nvarchar" MaxLength="50" />
+          <Property Name="porteEmpresa" Type="nvarchar" MaxLength="50" />
+          <Property Name="logradouro" Type="nvarchar" MaxLength="250" />
+          <Property Name="numero" Type="nvarchar" MaxLength="50" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="250" />
+          <Property Name="bairro" Type="nvarchar" MaxLength="50" />
+          <Property Name="codMunicipio" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="2" />
+          <Property Name="cep" Type="nvarchar" MaxLength="50" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbMunicipios">
+          <Key>
+            <PropertyRef Name="codMunicipio" />
+          </Key>
+          <Property Name="codMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="250" />
+          <Property Name="codIBGE" Type="int" />
+          <Property Name="UF" Type="char" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="tbProdutosServicos">
+          <Key>
+            <PropertyRef Name="codProdutoServico" />
+          </Key>
+          <Property Name="codProdutoServico" Type="int" Nullable="false" />
+          <Property Name="codFornecedor" Type="int" />
+          <Property Name="nome" Type="nvarchar" MaxLength="250" />
+          <Property Name="unidadeMedida" Type="nvarchar" MaxLength="50" />
+          <Property Name="precoUnitario" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbSecretarias">
+          <Key>
+            <PropertyRef Name="codSecretaria" />
+          </Key>
+          <Property Name="codSecretaria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cnpj" Type="nvarchar" MaxLength="50" />
+          <Property Name="nome" Type="nvarchar" MaxLength="250" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="logradouro" Type="nvarchar" MaxLength="250" />
+          <Property Name="numero" Type="nvarchar" MaxLength="50" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="50" />
+          <Property Name="codMunicipio" Type="int" />
+          <Property Name="telefone" Type="nvarchar" MaxLength="50" />
+          <Property Name="horaAtendimentoInicial" Type="time" Precision="7" />
+          <Property Name="horaAtendimentoFinal" Type="time" Precision="7" />
+          <Property Name="ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbUsuarios">
+          <Key>
+            <PropertyRef Name="codUsuario" />
+          </Key>
+          <Property Name="codUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="nvarchar" MaxLength="250" />
+          <Property Name="rg" Type="nvarchar" MaxLength="50" />
+          <Property Name="cpf" Type="nvarchar" MaxLength="50" />
+          <Property Name="logradouro" Type="nvarchar" MaxLength="250" />
+          <Property Name="numero" Type="nvarchar" MaxLength="50" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="250" />
+          <Property Name="bairro" Type="nvarchar" MaxLength="50" />
+          <Property Name="codMunicipio" Type="int" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="2" />
+          <Property Name="cep" Type="nvarchar" MaxLength="50" />
+          <Property Name="sexo" Type="char" MaxLength="1" />
+          <Property Name="dataNascimento" Type="datetime" />
+          <Property Name="senha" Type="nvarchar(max)" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tbFornecedores_tbMunicipios">
+          <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="1" />
+          <End Role="tbFornecedores" Type="Self.tbFornecedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbFornecedores">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProdutosServicos_tbFornecedores">
+          <End Role="tbFornecedores" Type="Self.tbFornecedores" Multiplicity="0..1" />
+          <End Role="tbProdutosServicos" Type="Self.tbProdutosServicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFornecedores">
+              <PropertyRef Name="codFornecedor" />
+            </Principal>
+            <Dependent Role="tbProdutosServicos">
+              <PropertyRef Name="codFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSecretarias_tbMunicipios">
+          <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="0..1" />
+          <End Role="tbSecretarias" Type="Self.tbSecretarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbSecretarias">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbUsuarios_tbMunicipios">
+          <End Role="tbMunicipios" Type="Self.tbMunicipios" Multiplicity="1" />
+          <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbUsuarios">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SampasoftDBModelStoreContainer">
+          <EntitySet Name="tbFornecedores" EntityType="Self.tbFornecedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProdutosServicos" EntityType="Self.tbProdutosServicos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbSecretarias" EntityType="Self.tbSecretarias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbFornecedores_tbMunicipios" Association="Self.FK_tbFornecedores_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbFornecedores" EntitySet="tbFornecedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProdutosServicos_tbFornecedores" Association="Self.FK_tbProdutosServicos_tbFornecedores">
+            <End Role="tbFornecedores" EntitySet="tbFornecedores" />
+            <End Role="tbProdutosServicos" EntitySet="tbProdutosServicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSecretarias_tbMunicipios" Association="Self.FK_tbSecretarias_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbSecretarias" EntitySet="tbSecretarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbUsuarios_tbMunicipios" Association="Self.FK_tbUsuarios_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SampasoftDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="SampasoftDBEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="SampasoftDBEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tbFornecedores" EntityType="SampasoftDBModel.Fornecedor" />
+          <EntitySet Name="tbMunicipios" EntityType="SampasoftDBModel.Municipio" />
+          <EntitySet Name="tbUsuarios" EntityType="SampasoftDBModel.Usuario" />
+          <EntitySet Name="tbSecretarias" EntityType="SampasoftDBModel.Secretaria" />
+          <AssociationSet Name="FK_tbFornecedores_tbMunicipios" Association="SampasoftDBModel.FK_tbFornecedores_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbFornecedores" EntitySet="tbFornecedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSecretarias_tbMunicipios" Association="SampasoftDBModel.FK_tbSecretarias_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbSecretarias" EntitySet="tbSecretarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbUsuarios_tbMunicipios" Association="SampasoftDBModel.FK_tbUsuarios_tbMunicipios">
+            <End Role="tbMunicipios" EntitySet="tbMunicipios" />
+            <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+          </AssociationSet>
+          <EntitySet Name="tbProdutosServicos" EntityType="SampasoftDBModel.ProdutoServico" />
+          <AssociationSet Name="FK_tbProdutosServicos_tbFornecedores" Association="SampasoftDBModel.FK_tbProdutosServicos_tbFornecedores">
+            <End Role="Fornecedor" EntitySet="tbFornecedores" />
+            <End Role="tbProdutosServicos" EntitySet="tbProdutosServicos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Fornecedor">
+          <Key>
+            <PropertyRef Name="codFornecedor" />
+          </Key>
+          <Property Name="codFornecedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpfcnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="razaoSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nomeFantasia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="porteEmpresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logradouro" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="codMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="cep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProdutosServicos" Relationship="SampasoftDBModel.FK_tbProdutosServicos_tbFornecedores" FromRole="Fornecedor" ToRole="tbProdutosServicos" />
+        </EntityType>
+        <EntityType Name="Municipio">
+          <Key>
+            <PropertyRef Name="codMunicipio" />
+          </Key>
+          <Property Name="codMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="codIBGE" Type="Int32" />
+          <NavigationProperty Name="Fornecedores" Relationship="SampasoftDBModel.FK_tbFornecedores_tbMunicipios" FromRole="tbMunicipios" ToRole="tbFornecedores" />
+          <NavigationProperty Name="Secretarias" Relationship="SampasoftDBModel.FK_tbSecretarias_tbMunicipios" FromRole="tbMunicipios" ToRole="tbSecretarias" />
+          <NavigationProperty Name="Usuarios" Relationship="SampasoftDBModel.FK_tbUsuarios_tbMunicipios" FromRole="tbMunicipios" ToRole="tbUsuarios" />
+          <Property Name="UF" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codUsuario" />
+          </Key>
+          <Property Name="codUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="rg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cpf" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logradouro" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="codMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="cep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="dataNascimento" Type="DateTime" Precision="3" />
+          <Property Name="senha" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Secretaria">
+          <Key>
+            <PropertyRef Name="codSecretaria" />
+            <PropertyRef Name="ativo" />
+          </Key>
+          <Property Name="codSecretaria" Type="Int32" Nullable="false" />
+          <Property Name="cnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="logradouro" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="codMunicipio" Type="Int32" />
+          <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="horaAtendimentoInicial" Type="Time" Precision="7" />
+          <Property Name="horaAtendimentoFinal" Type="Time" Precision="7" />
+          <Property Name="ativo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbFornecedores_tbMunicipios">
+          <End Type="SampasoftDBModel.Municipio" Role="tbMunicipios" Multiplicity="1" />
+          <End Type="SampasoftDBModel.Fornecedor" Role="tbFornecedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbFornecedores">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSecretarias_tbMunicipios">
+          <End Type="SampasoftDBModel.Municipio" Role="tbMunicipios" Multiplicity="0..1" />
+          <End Type="SampasoftDBModel.Secretaria" Role="tbSecretarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbSecretarias">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbUsuarios_tbMunicipios">
+          <End Type="SampasoftDBModel.Municipio" Role="tbMunicipios" Multiplicity="1" />
+          <End Type="SampasoftDBModel.Usuario" Role="tbUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbMunicipios">
+              <PropertyRef Name="codMunicipio" />
+            </Principal>
+            <Dependent Role="tbUsuarios">
+              <PropertyRef Name="codMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProdutoServico">
+          <Key>
+            <PropertyRef Name="codProdutoServico" />
+          </Key>
+          <Property Name="codProdutoServico" Type="Int32" Nullable="false" />
+          <Property Name="codFornecedor" Type="Int32" />
+          <Property Name="nome" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="unidadeMedida" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="precoUnitario" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="ativo" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_tbProdutosServicos_tbFornecedores">
+          <End Type="SampasoftDBModel.Fornecedor" Role="Fornecedor" Multiplicity="0..1" />
+          <End Type="SampasoftDBModel.ProdutoServico" Role="tbProdutosServicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedor">
+              <PropertyRef Name="codFornecedor" />
+            </Principal>
+            <Dependent Role="tbProdutosServicos">
+              <PropertyRef Name="codFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SampasoftDBModelStoreContainer" CdmEntityContainer="SampasoftDBEntities" />
+        <EntityContainerMapping StorageEntityContainer="SampasoftDBModelStoreContainer" CdmEntityContainer="SampasoftDBEntities" >
+          <EntitySetMapping Name="tbFornecedores">
+            <EntityTypeMapping TypeName="SampasoftDBModel.Fornecedor">
+              <MappingFragment StoreEntitySet="tbFornecedores">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codMunicipio" ColumnName="codMunicipio" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="porteEmpresa" ColumnName="porteEmpresa" />
+                <ScalarProperty Name="nomeFantasia" ColumnName="nomeFantasia" />
+                <ScalarProperty Name="razaoSocial" ColumnName="razaoSocial" />
+                <ScalarProperty Name="cpfcnpj" ColumnName="cpfcnpj" />
+                <ScalarProperty Name="codFornecedor" ColumnName="codFornecedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbMunicipios">
+            <EntityTypeMapping TypeName="SampasoftDBModel.Municipio">
+              <MappingFragment StoreEntitySet="tbMunicipios">
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="codIBGE" ColumnName="codIBGE" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codMunicipio" ColumnName="codMunicipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUsuarios">
+            <EntityTypeMapping TypeName="SampasoftDBModel.Usuario">
+              <MappingFragment StoreEntitySet="tbUsuarios">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="cep" ColumnName="cep" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codMunicipio" ColumnName="codMunicipio" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="rg" ColumnName="rg" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codUsuario" ColumnName="codUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSecretarias">
+            <EntityTypeMapping TypeName="SampasoftDBModel.Secretaria">
+              <MappingFragment StoreEntitySet="tbSecretarias">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="horaAtendimentoFinal" ColumnName="horaAtendimentoFinal" />
+                <ScalarProperty Name="horaAtendimentoInicial" ColumnName="horaAtendimentoInicial" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="codMunicipio" ColumnName="codMunicipio" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+                <ScalarProperty Name="codSecretaria" ColumnName="codSecretaria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProdutosServicos">
+            <EntityTypeMapping TypeName="SampasoftDBModel.ProdutoServico">
+              <MappingFragment StoreEntitySet="tbProdutosServicos">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="precoUnitario" ColumnName="precoUnitario" />
+                <ScalarProperty Name="unidadeMedida" ColumnName="unidadeMedida" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="codFornecedor" ColumnName="codFornecedor" />
+                <ScalarProperty Name="codProdutoServico" ColumnName="codProdutoServico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

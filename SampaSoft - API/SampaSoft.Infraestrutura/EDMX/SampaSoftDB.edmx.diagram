@@ -4,7 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" />
+      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" ZoomLevel="71" >
+        <EntityTypeShape EntityType="SampasoftDBModel.Fornecedor" Width="1.5" PointX="6.5" PointY="4.25" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Municipio" Width="1.5" PointX="6.5" PointY="1.25" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Usuario" Width="1.5" PointX="8.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Secretaria" Width="1.5" PointX="4.375" PointY="1.25" />
+        <AssociationConnector Association="SampasoftDBModel.FK_tbFornecedores_tbMunicipios" />
+        <AssociationConnector Association="SampasoftDBModel.FK_tbSecretarias_tbMunicipios" />
+        <AssociationConnector Association="SampasoftDBModel.FK_tbUsuarios_tbMunicipios" />
+        <EntityTypeShape EntityType="SampasoftDBModel.ProdutoServico" Width="1.5" PointX="8.75" PointY="5.75" />
+        <AssociationConnector Association="SampasoftDBModel.FK_tbProdutosServicos_tbFornecedores" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
