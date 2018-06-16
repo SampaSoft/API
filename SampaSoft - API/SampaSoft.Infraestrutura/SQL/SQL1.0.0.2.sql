@@ -1,7 +1,7 @@
 ﻿USE [SampasoftDB]
 GO
 
-/****** Object:  Table [dbo].[tbFornecedores]    Script Date: 16/06/2018 12:08:39 ******/
+/****** Object:  Table [dbo].[tbFornecedores]    Script Date: 16/06/2018 12:34:36 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -13,6 +13,7 @@ CREATE TABLE [dbo].[tbFornecedores](
 	[cpfcnpj] [nvarchar](50) NULL,
 	[razaoSocial] [nvarchar](50) NULL,
 	[nomeFantasia] [nvarchar](50) NULL,
+	[porteEmpresa] [nvarchar](50) NULL,
 	[logradouro] [nvarchar](250) NULL,
 	[numero] [nvarchar](50) NULL,
 	[complemento] [nvarchar](250) NULL,
