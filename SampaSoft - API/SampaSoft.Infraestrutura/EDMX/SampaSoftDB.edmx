@@ -70,6 +70,26 @@
           <Property Name="codIBGE" Type="int" />
           <Property Name="UF" Type="char" MaxLength="2" />
         </EntityType>
+        <EntityType Name="tbOrdensCompras">
+          <Key>
+            <PropertyRef Name="codOrdemCompra" />
+          </Key>
+          <Property Name="codOrdemCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descricao" Type="nvarchar" MaxLength="250" />
+          <Property Name="justificativa" Type="nvarchar" MaxLength="250" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="dataAprovado" Type="datetime" />
+          <Property Name="protocolo" Type="uniqueidentifier" />
+          <Property Name="ativo" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbOrdensComprasProdutosServicos">
+          <Key>
+            <PropertyRef Name="codOrdemCompra" />
+            <PropertyRef Name="codProdutoServico" />
+          </Key>
+          <Property Name="codOrdemCompra" Type="int" Nullable="false" />
+          <Property Name="codProdutoServico" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="tbProdutosServicos">
           <Key>
             <PropertyRef Name="codProdutoServico" />
@@ -144,6 +164,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbOrdensComprasProdutosServicos_tbOrdensCompras">
+          <End Role="tbOrdensCompras" Type="Self.tbOrdensCompras" Multiplicity="1" />
+          <End Role="tbOrdensComprasProdutosServicos" Type="Self.tbOrdensComprasProdutosServicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbOrdensCompras">
+              <PropertyRef Name="codOrdemCompra" />
+            </Principal>
+            <Dependent Role="tbOrdensComprasProdutosServicos">
+              <PropertyRef Name="codOrdemCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbOrdensComprasProdutosServicos_tbProdutosServicos">
+          <End Role="tbProdutosServicos" Type="Self.tbProdutosServicos" Multiplicity="1" />
+          <End Role="tbOrdensComprasProdutosServicos" Type="Self.tbOrdensComprasProdutosServicos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProdutosServicos">
+              <PropertyRef Name="codProdutoServico" />
+            </Principal>
+            <Dependent Role="tbOrdensComprasProdutosServicos">
+              <PropertyRef Name="codProdutoServico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbProdutosServicos_tbFornecedores">
           <End Role="tbFornecedores" Type="Self.tbFornecedores" Multiplicity="0..1" />
           <End Role="tbProdutosServicos" Type="Self.tbProdutosServicos" Multiplicity="*" />
@@ -186,6 +230,8 @@
           <EntitySet Name="OCItens" EntityType="Self.OCItens" Schema="bec" store:Type="Tables" />
           <EntitySet Name="tbFornecedores" EntityType="Self.tbFornecedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbMunicipios" EntityType="Self.tbMunicipios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbOrdensCompras" EntityType="Self.tbOrdensCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbOrdensComprasProdutosServicos" EntityType="Self.tbOrdensComprasProdutosServicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbProdutosServicos" EntityType="Self.tbProdutosServicos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbSecretarias" EntityType="Self.tbSecretarias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
@@ -196,6 +242,14 @@
           <AssociationSet Name="FK_tbFornecedores_tbMunicipios" Association="Self.FK_tbFornecedores_tbMunicipios">
             <End Role="tbMunicipios" EntitySet="tbMunicipios" />
             <End Role="tbFornecedores" EntitySet="tbFornecedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbOrdensComprasProdutosServicos_tbOrdensCompras" Association="Self.FK_tbOrdensComprasProdutosServicos_tbOrdensCompras">
+            <End Role="tbOrdensCompras" EntitySet="tbOrdensCompras" />
+            <End Role="tbOrdensComprasProdutosServicos" EntitySet="tbOrdensComprasProdutosServicos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbOrdensComprasProdutosServicos_tbProdutosServicos" Association="Self.FK_tbOrdensComprasProdutosServicos_tbProdutosServicos">
+            <End Role="tbProdutosServicos" EntitySet="tbProdutosServicos" />
+            <End Role="tbOrdensComprasProdutosServicos" EntitySet="tbOrdensComprasProdutosServicos" />
           </AssociationSet>
           <AssociationSet Name="FK_tbProdutosServicos_tbFornecedores" Association="Self.FK_tbProdutosServicos_tbFornecedores">
             <End Role="tbFornecedores" EntitySet="tbFornecedores" />
@@ -242,6 +296,11 @@
           <AssociationSet Name="FK_OCItens_OCItens" Association="SampasoftDBModel.FK_OCItens_OCItens">
             <End Role="OC" EntitySet="OC" />
             <End Role="OCItens" EntitySet="OCItens" />
+          </AssociationSet>
+          <EntitySet Name="tbOrdensCompras" EntityType="SampasoftDBModel.OrdemCompra" />
+          <AssociationSet Name="tbOrdensComprasProdutosServicos" Association="SampasoftDBModel.tbOrdensComprasProdutosServicos">
+            <End Role="tbOrdensCompras" EntitySet="tbOrdensCompras" />
+            <End Role="ProdutoServico" EntitySet="tbProdutosServicos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Fornecedor">
@@ -424,6 +483,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OrdemCompra">
+          <Key>
+            <PropertyRef Name="codOrdemCompra" />
+          </Key>
+          <Property Name="codOrdemCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="justificativa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="dataAprovado" Type="DateTime" Precision="3" />
+          <Property Name="protocolo" Type="Guid" />
+          <Property Name="ativo" Type="Boolean" />
+          <NavigationProperty Name="ProdutosServicos" Relationship="SampasoftDBModel.tbOrdensComprasProdutosServicos" FromRole="tbOrdensCompras" ToRole="ProdutoServico" />
+        </EntityType>
+        <Association Name="tbOrdensComprasProdutosServicos">
+          <End Type="SampasoftDBModel.OrdemCompra" Role="tbOrdensCompras" Multiplicity="*" />
+          <End Type="SampasoftDBModel.ProdutoServico" Role="ProdutoServico" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -552,6 +628,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbOrdensCompras">
+            <EntityTypeMapping TypeName="SampasoftDBModel.OrdemCompra">
+              <MappingFragment StoreEntitySet="tbOrdensCompras">
+                <ScalarProperty Name="ativo" ColumnName="ativo" />
+                <ScalarProperty Name="protocolo" ColumnName="protocolo" />
+                <ScalarProperty Name="dataAprovado" ColumnName="dataAprovado" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="justificativa" ColumnName="justificativa" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="codOrdemCompra" ColumnName="codOrdemCompra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tbOrdensComprasProdutosServicos" TypeName="SampasoftDBModel.tbOrdensComprasProdutosServicos" StoreEntitySet="tbOrdensComprasProdutosServicos">
+            <EndProperty Name="ProdutoServico">
+              <ScalarProperty Name="codProdutoServico" ColumnName="codProdutoServico" />
+            </EndProperty>
+            <EndProperty Name="tbOrdensCompras">
+              <ScalarProperty Name="codOrdemCompra" ColumnName="codOrdemCompra" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

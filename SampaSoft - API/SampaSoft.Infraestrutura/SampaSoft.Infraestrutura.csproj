@@ -64,6 +64,9 @@
     <Compile Include="EDMX\OCItem.cs">
       <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EDMX\OrdemCompra.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\ProdutoServico.cs">
       <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
@@ -114,6 +117,9 @@
       <DependentUpon>SampaSoftDB.edmx</DependentUpon>
       <LastGenOutput>SampaSoftDB.cs</LastGenOutput>
     </Content>
+    <Content Include="SQL\SQL1.0.0.8.sql" />
+    <Content Include="SQL\SQL1.0.0.7.sql" />
+    <Content Include="SQL\SQL1.0.0.6.sql" />
     <Content Include="SQL\SQL1.0.0.5.sql" />
     <Content Include="SQL\SQL1.0.0.4.sql" />
     <Content Include="SQL\SQL1.0.0.3.sql" />

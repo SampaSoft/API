@@ -33,5 +33,6 @@ namespace SampaSoft.Infraestrutura.EDMX
         public virtual DbSet<OCEncerrada> OCEncerradas { get; set; }
         public virtual DbSet<OC> OC { get; set; }
         public virtual DbSet<OCItem> OCItens { get; set; }
+        public virtual DbSet<OrdemCompra> tbOrdensCompras { get; set; }
     }
 }
