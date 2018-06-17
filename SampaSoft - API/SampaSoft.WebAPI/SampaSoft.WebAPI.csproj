@@ -158,9 +158,14 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="DTO\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IOC\AutoMapperConfig.cs" />
+    <Compile Include="IOC\UnityResolver.cs" />
+    <Compile Include="IOC\ConfigureIoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
