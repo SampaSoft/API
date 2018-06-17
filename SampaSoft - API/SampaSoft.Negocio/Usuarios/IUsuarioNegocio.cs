@@ -1,14 +1,14 @@
 ﻿using System;
+using SampaSoft.Dados.Usuarios;
 using System.Collections.Generic;
 using SampaSoft.Infraestrutura.EDMX;
 
-namespace SampaSoft.Dados.Usuarios
+namespace SampaSoft.Negocio.Usuarios
 {
-    public interface IUsuarioDados
+    public interface IUsuarioNegocio
     {
-        IList<Usuario> BuscaTodosUsuario();
-        Usuario SalvaUsuario(Usuario usuario);
         Usuario AlteraUsuario(Usuario usuario);
+        IList<Usuario> BuscaTodosUsuarios();
         Usuario SelecionaUsuarioPorLogin(String login);
         bool SelecionaUsuarioLoginSenha(string login, string senha);
     }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using SampaSoft.Infraestrutura.EDMX;
 using System.Data.Entity;
+using System.Collections.Generic;
+using SampaSoft.Infraestrutura.EDMX;
 
 namespace SampaSoft.Dados.Usuarios
 {
@@ -66,9 +63,9 @@ namespace SampaSoft.Dados.Usuarios
         /// </summary>
         /// <param name="Usuario"></param>
         /// <returns></returns>
-        public Usuario SelecionaUsuarioPorLogin(String usuario)
+        public Usuario SelecionaUsuarioPorLogin(String login)
         {
-            return db.Usuarios.SingleOrDefault(x => x.cpf.Equals(usuario));
+            return db.Usuarios.SingleOrDefault(x => x.cpf.Equals(login));
         }
 
         public bool SelecionaUsuarioLoginSenha(string login, string senha)
