@@ -1,7 +1,7 @@
 ﻿USE [SampasoftDB]
 GO
 
-/****** Object:  Table [dbo].[tbSecretarias]    Script Date: 16/06/2018 13:29:43 ******/
+/****** Object:  Table [dbo].[tbSecretarias]    Script Date: 16/06/2018 23:20:11 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -21,6 +21,8 @@ CREATE TABLE [dbo].[tbSecretarias](
 	[horaAtendimentoInicial] [time](7) NULL,
 	[horaAtendimentoFinal] [time](7) NULL,
 	[ativo] [bit] NOT NULL,
+	[nomeSecretario] [nvarchar](250) NULL,
+	[bairro] [nvarchar](50) NULL,
  CONSTRAINT [PK_tbSecretarias] PRIMARY KEY CLUSTERED 
 (
 	[codSecretaria] ASC
