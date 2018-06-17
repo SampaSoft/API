@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace SampaSoft.Dados.OrdensCompras
 {
-    interface IOrdemCompraDados
+    public interface IOrdemCompraDados
     {
         IList<OrdemCompra> BuscaTodosOrdensCompras();
         OrdemCompra BuscaOrdemCompra(int codOrdemCompra);
