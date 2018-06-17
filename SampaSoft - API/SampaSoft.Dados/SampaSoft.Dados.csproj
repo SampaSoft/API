@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrdemCompra\IOrdemCompraDados.cs" />
+    <Compile Include="OrdemCompra\OrdemCompraDados.cs" />
+    <Compile Include="Orgao\IOrgaoDados.cs" />
+    <Compile Include="Orgao\OrgaoDados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuarios\IUsuarioDados.cs" />
     <Compile Include="Usuarios\UsuarioDados.cs" />
@@ -62,6 +66,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fornecedor\" />
+    <Folder Include="Municipio\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

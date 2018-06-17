@@ -67,7 +67,13 @@
     <Compile Include="EDMX\OrdemCompra.cs">
       <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="EDMX\Orgao.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EDMX\ProdutoServico.cs">
+      <DependentUpon>SampaSoftDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMX\ProdutoServicoFornecedorPreco.cs">
       <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
     <Compile Include="EDMX\SampaSoftDB.Context.cs">
@@ -84,9 +90,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SampaSoftDB.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EDMX\Secretaria.cs">
-      <DependentUpon>SampaSoftDB.tt</DependentUpon>
     </Compile>
     <Compile Include="EDMX\Usuario.cs">
       <DependentUpon>SampaSoftDB.tt</DependentUpon>
