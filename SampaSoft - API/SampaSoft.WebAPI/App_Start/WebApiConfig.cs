@@ -21,6 +21,11 @@ namespace SampaSoft.WebAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            AutoMapperConfig.RegisterMappings();
+
+            //Configura a IoC
+            config.DependencyResolver = new UnityResolver(new ConfigureIoC().register());
         }
     }
 }
