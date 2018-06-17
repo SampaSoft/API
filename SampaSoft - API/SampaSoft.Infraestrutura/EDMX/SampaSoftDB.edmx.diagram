@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" ZoomLevel="116" >
-        <EntityTypeShape EntityType="SampasoftDBModel.Fornecedor" Width="1.5" PointX="9.25" PointY="3.625" />
-        <EntityTypeShape EntityType="SampasoftDBModel.Municipio" Width="1.5" PointX="9.25" PointY="0.625" />
-        <EntityTypeShape EntityType="SampasoftDBModel.Usuario" Width="1.5" PointX="11.625" PointY="0.625" />
-        <EntityTypeShape EntityType="SampasoftDBModel.Orgao" Width="1.75" PointX="6.75" PointY="0.625" />
+      <Diagram DiagramId="a4f73ad3b9b44979b16d01b5b753e219" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="SampasoftDBModel.Fornecedor" Width="1.5" PointX="9.5" PointY="3.625" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Municipio" Width="1.5" PointX="9.5" PointY="0.5" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Usuario" Width="1.5" PointX="11.625" PointY="0.5" />
+        <EntityTypeShape EntityType="SampasoftDBModel.Orgao" Width="1.75" PointX="6.75" PointY="0.5" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbFornecedores_tbMunicipios" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbSecretarias_tbMunicipios" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbUsuarios_tbMunicipios" />
@@ -18,7 +18,7 @@
         <AssociationConnector Association="SampasoftDBModel.FK_OCItens_OCItens" />
         <EntityTypeShape EntityType="SampasoftDBModel.OrdemCompra" Width="1.5" PointX="4" PointY="2.75" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbOrdensCompras_tbSecretarias" />
-        <EntityTypeShape EntityType="SampasoftDBModel.ProdutoServico" Width="2.875" PointX="6.125" PointY="4.5" />
+        <EntityTypeShape EntityType="SampasoftDBModel.ProdutoServico" Width="2.875" PointX="6.125" PointY="4.875" />
         <AssociationConnector Association="SampasoftDBModel.tbOrdensComprasProdutosServicos" />
         <EntityTypeShape EntityType="SampasoftDBModel.ProdutoServicoFornecedorPreco" Width="2.875" PointX="6.125" PointY="8" />
         <AssociationConnector Association="SampasoftDBModel.FK_tbProdutosServicosFornecedoresPrecos_tbFornecedores" />

@@ -129,6 +129,8 @@
           <Property Name="horaAtendimentoInicial" Type="time" Precision="7" />
           <Property Name="horaAtendimentoFinal" Type="time" Precision="7" />
           <Property Name="ativo" Type="bit" Nullable="false" />
+          <Property Name="nomeSecretario" Type="nvarchar" MaxLength="250" />
+          <Property Name="bairro" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tbUsuarios">
           <Key>
@@ -445,6 +447,8 @@
           <Property Name="horaAtendimentoFinal" Type="Time" Precision="7" />
           <Property Name="ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="OrdensCompras" Relationship="SampasoftDBModel.FK_tbOrdensCompras_tbSecretarias" FromRole="Secretaria" ToRole="OrdemCompra" />
+          <Property Name="nomeSecretario" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tbFornecedores_tbMunicipios">
           <End Type="SampasoftDBModel.Municipio" Role="tbMunicipios" Multiplicity="1" />
@@ -683,6 +687,8 @@
           <EntitySetMapping Name="Orgaos">
             <EntityTypeMapping TypeName="SampasoftDBModel.Orgao">
               <MappingFragment StoreEntitySet="tbSecretarias">
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="nomeSecretario" ColumnName="nomeSecretario" />
                 <ScalarProperty Name="ativo" ColumnName="ativo" />
                 <ScalarProperty Name="horaAtendimentoFinal" ColumnName="horaAtendimentoFinal" />
                 <ScalarProperty Name="horaAtendimentoInicial" ColumnName="horaAtendimentoInicial" />

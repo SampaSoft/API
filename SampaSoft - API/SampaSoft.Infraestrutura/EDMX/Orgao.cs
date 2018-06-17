@@ -32,6 +32,8 @@ namespace SampaSoft.Infraestrutura.EDMX
         public Nullable<System.TimeSpan> horaAtendimentoInicial { get; set; }
         public Nullable<System.TimeSpan> horaAtendimentoFinal { get; set; }
         public bool ativo { get; set; }
+        public string nomeSecretario { get; set; }
+        public string bairro { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdemCompra> OrdensCompras { get; set; }
