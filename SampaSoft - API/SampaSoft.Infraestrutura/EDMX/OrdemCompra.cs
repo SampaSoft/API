@@ -27,6 +27,7 @@ namespace SampaSoft.Infraestrutura.EDMX
         public Nullable<System.DateTime> dataAprovado { get; set; }
         public Nullable<System.Guid> protocolo { get; set; }
         public Nullable<bool> ativo { get; set; }
+        public int codSecretaria { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProdutoServico> ProdutosServicos { get; set; }

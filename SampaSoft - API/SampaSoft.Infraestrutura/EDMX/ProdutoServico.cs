@@ -14,12 +14,20 @@ namespace SampaSoft.Infraestrutura.EDMX
     
     public partial class ProdutoServico
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProdutoServico()
+        {
+            this.ProdutosServicosFornecedoresPrecos = new HashSet<ProdutoServicoFornecedorPreco>();
+        }
+    
         public int codProdutoServico { get; set; }
-        public Nullable<int> codFornecedor { get; set; }
         public string nome { get; set; }
         public string unidadeMedida { get; set; }
-        public Nullable<decimal> precoUnitario { get; set; }
+        public Nullable<decimal> precoMedio { get; set; }
         public Nullable<System.DateTime> dataCadastro { get; set; }
         public Nullable<bool> ativo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProdutoServicoFornecedorPreco> ProdutosServicosFornecedoresPrecos { get; set; }
     }
 }

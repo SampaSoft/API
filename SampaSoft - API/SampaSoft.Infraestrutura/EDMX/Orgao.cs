@@ -12,8 +12,14 @@ namespace SampaSoft.Infraestrutura.EDMX
     using System;
     using System.Collections.Generic;
     
-    public partial class Secretaria
+    public partial class Orgao
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Orgao()
+        {
+            this.OrdensCompras = new HashSet<OrdemCompra>();
+        }
+    
         public int codSecretaria { get; set; }
         public string cnpj { get; set; }
         public string nome { get; set; }
@@ -26,5 +32,8 @@ namespace SampaSoft.Infraestrutura.EDMX
         public Nullable<System.TimeSpan> horaAtendimentoInicial { get; set; }
         public Nullable<System.TimeSpan> horaAtendimentoFinal { get; set; }
         public bool ativo { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdemCompra> OrdensCompras { get; set; }
     }
 }

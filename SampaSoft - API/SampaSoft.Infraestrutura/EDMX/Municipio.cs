@@ -18,7 +18,7 @@ namespace SampaSoft.Infraestrutura.EDMX
         public Municipio()
         {
             this.Fornecedores = new HashSet<Fornecedor>();
-            this.Secretarias = new HashSet<Secretaria>();
+            this.Orgaos = new HashSet<Orgao>();
             this.Usuarios = new HashSet<Usuario>();
         }
     
@@ -30,7 +30,7 @@ namespace SampaSoft.Infraestrutura.EDMX
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fornecedor> Fornecedores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Secretaria> Secretarias { get; set; }
+        public virtual ICollection<Orgao> Orgaos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

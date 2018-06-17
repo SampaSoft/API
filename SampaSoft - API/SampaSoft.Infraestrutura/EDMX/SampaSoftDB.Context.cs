@@ -25,14 +25,15 @@ namespace SampaSoft.Infraestrutura.EDMX
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Fornecedor> tbFornecedores { get; set; }
-        public virtual DbSet<Municipio> tbMunicipios { get; set; }
-        public virtual DbSet<Usuario> tbUsuarios { get; set; }
-        public virtual DbSet<Secretaria> tbSecretarias { get; set; }
-        public virtual DbSet<ProdutoServico> tbProdutosServicos { get; set; }
+        public virtual DbSet<Fornecedor> Fornecedores { get; set; }
+        public virtual DbSet<Municipio> Municipios { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Orgao> Secretarias { get; set; }
         public virtual DbSet<OCEncerrada> OCEncerradas { get; set; }
         public virtual DbSet<OC> OC { get; set; }
         public virtual DbSet<OCItem> OCItens { get; set; }
-        public virtual DbSet<OrdemCompra> tbOrdensCompras { get; set; }
+        public virtual DbSet<OrdemCompra> OrdensCompras { get; set; }
+        public virtual DbSet<ProdutoServico> tbProdutosServicos { get; set; }
+        public virtual DbSet<ProdutoServicoFornecedorPreco> tbProdutosServicosFornecedoresPrecos { get; set; }
     }
 }

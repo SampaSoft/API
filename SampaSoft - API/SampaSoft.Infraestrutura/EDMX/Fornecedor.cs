@@ -14,12 +14,6 @@ namespace SampaSoft.Infraestrutura.EDMX
     
     public partial class Fornecedor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Fornecedor()
-        {
-            this.ProdutosServicos = new HashSet<ProdutoServico>();
-        }
-    
         public int codFornecedor { get; set; }
         public string cpfcnpj { get; set; }
         public string razaoSocial { get; set; }
@@ -34,8 +28,5 @@ namespace SampaSoft.Infraestrutura.EDMX
         public string cep { get; set; }
         public Nullable<System.DateTime> dataCadastro { get; set; }
         public bool ativo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProdutoServico> ProdutosServicos { get; set; }
     }
 }
