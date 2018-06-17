@@ -332,14 +332,14 @@
           <EntitySet Name="Fornecedores" EntityType="SampasoftDBModel.Fornecedor" />
           <EntitySet Name="Municipios" EntityType="SampasoftDBModel.Municipio" />
           <EntitySet Name="Usuarios" EntityType="SampasoftDBModel.Usuario" />
-          <EntitySet Name="Secretarias" EntityType="SampasoftDBModel.Orgao" />
+          <EntitySet Name="Orgaos" EntityType="SampasoftDBModel.Orgao" />
           <AssociationSet Name="FK_tbFornecedores_tbMunicipios" Association="SampasoftDBModel.FK_tbFornecedores_tbMunicipios">
             <End Role="tbMunicipios" EntitySet="Municipios" />
             <End Role="tbFornecedores" EntitySet="Fornecedores" />
           </AssociationSet>
           <AssociationSet Name="FK_tbSecretarias_tbMunicipios" Association="SampasoftDBModel.FK_tbSecretarias_tbMunicipios">
             <End Role="tbMunicipios" EntitySet="Municipios" />
-            <End Role="tbSecretarias" EntitySet="Secretarias" />
+            <End Role="tbSecretarias" EntitySet="Orgaos" />
           </AssociationSet>
           <AssociationSet Name="FK_tbUsuarios_tbMunicipios" Association="SampasoftDBModel.FK_tbUsuarios_tbMunicipios">
             <End Role="tbMunicipios" EntitySet="Municipios" />
@@ -354,7 +354,7 @@
           </AssociationSet>
           <EntitySet Name="OrdensCompras" EntityType="SampasoftDBModel.OrdemCompra" />
           <AssociationSet Name="FK_tbOrdensCompras_tbSecretarias" Association="SampasoftDBModel.FK_tbOrdensCompras_tbSecretarias">
-            <End Role="Secretaria" EntitySet="Secretarias" />
+            <End Role="Secretaria" EntitySet="Orgaos" />
             <End Role="OrdemCompra" EntitySet="OrdensCompras" />
           </AssociationSet>
           <EntitySet Name="tbProdutosServicos" EntityType="SampasoftDBModel.ProdutoServico" />
@@ -680,7 +680,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Secretarias">
+          <EntitySetMapping Name="Orgaos">
             <EntityTypeMapping TypeName="SampasoftDBModel.Orgao">
               <MappingFragment StoreEntitySet="tbSecretarias">
                 <ScalarProperty Name="ativo" ColumnName="ativo" />

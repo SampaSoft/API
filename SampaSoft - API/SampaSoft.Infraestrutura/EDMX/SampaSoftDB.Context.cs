@@ -28,7 +28,7 @@ namespace SampaSoft.Infraestrutura.EDMX
         public virtual DbSet<Fornecedor> Fornecedores { get; set; }
         public virtual DbSet<Municipio> Municipios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Orgao> Secretarias { get; set; }
+        public virtual DbSet<Orgao> Orgaos { get; set; }
         public virtual DbSet<OCEncerrada> OCEncerradas { get; set; }
         public virtual DbSet<OC> OC { get; set; }
         public virtual DbSet<OCItem> OCItens { get; set; }
