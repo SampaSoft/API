@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampaSoft.Dados", "SampaSof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampaSoft.Negocio", "SampaSoft.Negocio\SampaSoft.Negocio.csproj", "{414C0339-11A6-4B03-8A1F-37100DF0E83F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampaSoft.ViewModel", "SampaSoft.ViewModel\SampaSoft.ViewModel.csproj", "{50012860-96EA-4BB4-AAB5-D3396309277E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{414C0339-11A6-4B03-8A1F-37100DF0E83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{414C0339-11A6-4B03-8A1F-37100DF0E83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{414C0339-11A6-4B03-8A1F-37100DF0E83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50012860-96EA-4BB4-AAB5-D3396309277E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50012860-96EA-4BB4-AAB5-D3396309277E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50012860-96EA-4BB4-AAB5-D3396309277E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50012860-96EA-4BB4-AAB5-D3396309277E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{D42D7264-FBCF-4865-8527-42033E7B2A91} = {4175C6C6-F835-4013-B4B0-54DAF3FCA67F}
 		{5876E873-CC03-41AB-8B8F-2A4D3B85113B} = {DCD03D3D-CDA0-4D7D-8CDD-70B8897AA95B}
 		{414C0339-11A6-4B03-8A1F-37100DF0E83F} = {FFF4611A-BFB5-4971-AF61-05866ED57DCB}
+		{50012860-96EA-4BB4-AAB5-D3396309277E} = {B178B731-B729-4611-A1C8-B5D2BA60584E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E468E0D1-441B-46C0-AC55-E07DDA99F0FE}
